@@ -8,7 +8,7 @@ Base.metadata.create_all(bind=engine)
 
 app = FastAPI()
 
-@app.get("/students", response_model=list[schemas.StudentOut])
+@app.get("/", response_model=list[schemas.StudentOut])
 def read_students(page: int = 1, size: int = 10, db: Session = Depends(get_db)):
     skip = (page - 1) * size
     students = crud.get_students(db, skip=skip, limit=size)
